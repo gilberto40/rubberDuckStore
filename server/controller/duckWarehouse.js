@@ -1,5 +1,5 @@
 import Duck from '../model/duck.js';
-import { updateFunction, getDucks, notifyChangeInListDucks } from '../utils/warehouse/duckWarehouseHelper.js'
+import { updateFunction, getDucks, notifyChangeInListDucks } from '../utils/duckHelper.js';
 
 
 const duckWarehouseController = {
@@ -26,7 +26,7 @@ const duckWarehouseController = {
                 notifyChangeInListDucks();
                 res.status(201).json({
                     success: true,
-                    data: 'The duck has been added.'
+                    data: `The duck has been added id : ${ duck.id} .`
                 })
             } else {
                 req.body.quantity += duplicate.quantity;

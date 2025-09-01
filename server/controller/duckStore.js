@@ -1,11 +1,28 @@
 
 import PackageFactory from '../packaging/factory/packageFactory.js';
 import { PolystyreneBallsDecorator, BubbleWrapDecorator, MoistureBeadsDecorator } from '../packaging/decorator/specificPackageDecorator.js';
-
+import PriceCalculator from '../calculator/priceCalculator.js';
+import { getDucks } from '../utils/duckHelper.js';
 const duckStoreController = {
     processOrder: async (req, res) => {
         try {
             const { color, size, quantity, destination, shippingMode} = req.body;
+
+            const ducks = getDucks();
+            console.log(ducks);
+            const duckFound = ducks.find(duck => 
+                duck.color === color &&
+                duck.size === size
+            );
+
+            console.log(duckFound);
+
+            if (! duckFound) {
+                return res.status(400).json({
+                    success: false,
+                    error: "Inexistent Duck"
+                });
+            }
  
             let packaging = PackageFactory.createPackage(size);
             console.log(packaging);
@@ -31,10 +48,26 @@ const duckStoreController = {
 
             console.log(packageType);
             console.log(protectionType);
+            const orderDetails = {
+                quantity: quantity,
+                madeOf: packageType,
+                destinationCountry: destination,
+                shippingMode: shippingMode,
+                duckPrice : duckFound.price
+            };
+            const calculator = new PriceCalculator();
+            const { totalToPay, details } = calculator.calculateTotal(orderDetails);
+
+            const response = {
+                packageType,
+                protectionType,
+                totalToPay,
+                details
+            }
 
             res.status(200).json({
                 success: true,
-                data: protectionType
+                data: response
             });
         } catch (error) {
             res.status(400).json({
