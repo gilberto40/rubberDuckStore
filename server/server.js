@@ -4,6 +4,7 @@ import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import rubberDuckWarehouseRoutes from './routes/rubberDuckWarehouse.js';
+import rubberDuckStoreRoutes from './routes/rubberDuckStore.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -24,7 +25,7 @@ const db = mysql.createConnection({
 });
 
 app.use('/warehouse', rubberDuckWarehouseRoutes);
-app.use('/store', rubberDuckWarehouseRoutes);
+app.use('/store', rubberDuckStoreRoutes);
 
 app.get('/', (req, res) =>  res.send('Hello from Homepage'));
 

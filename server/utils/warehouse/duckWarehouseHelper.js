@@ -1,6 +1,6 @@
 
 import DuckList from './duckList.js';
-import Duck from '../model/duck.js';
+import Duck from '../../model/duck.js';
 
 
 export const updateFunction =  async (req, res, duplicateId = null) => {

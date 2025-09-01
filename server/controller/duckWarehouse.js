@@ -1,5 +1,5 @@
 import Duck from '../model/duck.js';
-import { updateFunction, getDucks, notifyChangeInListDucks } from '../utils/duckWarehouseHelper.js'
+import { updateFunction, getDucks, notifyChangeInListDucks } from '../utils/warehouse/duckWarehouseHelper.js'
 
 
 const duckWarehouseController = {

@@ -1,10 +1,10 @@
 import express from 'express';
 
-import duckController from '../controller/duckWarehouse.js';
+import duckStoreController from '../controller/duckStore.js';
 
 const router = express.Router();
 
-//router.get('/', duckController.getDucks);
+router.get('/process', duckStoreController.processOrder);
 
 
 export default router;

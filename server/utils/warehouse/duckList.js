@@ -1,4 +1,4 @@
-import Duck from '../model/duck.js';
+import Duck from '../../model/duck.js';
 
 class DuckList {
 
