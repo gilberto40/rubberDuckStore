@@ -20,7 +20,7 @@ class DuckList {
         try {
             const ducks = await Duck.findAll({
                 where: { deleted: false },
-                order: [['id', 'ASC']],
+                order: [['quantity', 'DESC']],
                 raw: true
             });
             

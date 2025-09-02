@@ -15,12 +15,13 @@ export const updateFunction =  async (req, res, duplicateId = null) => {
     const { quantity, price } = req.body;
 
     const existingDuck = DuckList.getListDucks().find((duck) => duck.id == id);
-   
+    
+    if (existingDuck.price === price && existingDuck.quantity === quantity) {
+        return -1;
+    }
+
     if (! existingDuck) {
-        return res.status(404).json({
-            success: false,
-            message: `There Is No Duck With id: ${id}`
-        });
+        return -2;
     }
 
     const fieldUpdate = {};

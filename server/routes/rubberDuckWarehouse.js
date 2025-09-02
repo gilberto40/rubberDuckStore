@@ -8,7 +8,7 @@ router.get('/', duckWarehouseController.getDucks);
 router.get('/:id', duckWarehouseController.getDuck);
 router.post('/add', duckWarehouseController.addDuck);
 router.patch('/update/:id', duckWarehouseController.updateDuck);
-router.patch('/delete/:id', duckWarehouseController.deleteDuck);
+router.delete('/delete/:id', duckWarehouseController.deleteDuck);
 
 
 export default router;

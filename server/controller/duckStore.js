@@ -9,13 +9,11 @@ const duckStoreController = {
             const { color, size, quantity, destination, shippingMode} = req.body;
 
             const ducks = getDucks();
-            console.log(ducks);
+
             const duckFound = ducks.find(duck => 
                 duck.color === color &&
                 duck.size === size
             );
-
-            console.log(duckFound);
 
             if (! duckFound) {
                 return res.status(400).json({
@@ -25,7 +23,7 @@ const duckStoreController = {
             }
  
             let packaging = PackageFactory.createPackage(size);
-            console.log(packaging);
+
             if (packaging === null) {
                 return res.status(400).json({
                     success: false,
@@ -46,8 +44,6 @@ const duckStoreController = {
             const packageType = packaging.getMadeOf();
             const protectionType = packaging.getFilledWith();
 
-            console.log(packageType);
-            console.log(protectionType);
             const orderDetails = {
                 quantity: quantity,
                 madeOf: packageType,

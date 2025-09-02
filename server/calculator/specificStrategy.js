@@ -2,8 +2,6 @@ import CalculatorStrategy from "./calculatorStrategy.js";
 
 class QuantityDiscountStrategy extends CalculatorStrategy {
     calculate(priceAdjust, orderDetails) {
-        console.log(priceAdjust);
-        console.log(orderDetails);
         if (orderDetails.quantity > 1000) {
             return { priceAdjust: -(priceAdjust * 0.20) , adjusments: "20% Discount for more than 100 units. Total: "};
         }

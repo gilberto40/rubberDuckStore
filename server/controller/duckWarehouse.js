@@ -29,7 +29,7 @@ const duckWarehouseController = {
                     data: `The duck has been added id : ${ duck.id} .`
                 })
             } else {
-                req.body.quantity += duplicate.quantity;
+                req.body.quantity = parseInt(req.body.quantity) + duplicate.quantity;
                 const updatedRowsCount = await updateFunction(req, res, duplicate.id);
                 if (updatedRowsCount > 0) {
                     notifyChangeInListDucks();
@@ -52,6 +52,21 @@ const duckWarehouseController = {
         try {
             const { id } = req.params;
             const updatedRowsCount = await updateFunction(req, res);
+
+            if (updatedRowsCount === -1) {
+                return res.status(400).json({
+                    success: false,
+                    message: `Price And Quantity with the same values`
+                }); 
+            }
+
+            if (updatedRowsCount === -2) {
+                return res.status(404).json({
+                    success: false,
+                    message: `There Is No Duck With id: ${id}`
+                });
+            }
+
             if (updatedRowsCount > 0) {
                 notifyChangeInListDucks();
                 
