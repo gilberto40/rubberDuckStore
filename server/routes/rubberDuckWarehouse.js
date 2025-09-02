@@ -4,6 +4,7 @@ import duckWarehouseController from '../controller/duckWarehouse.js';
 
 const router = express.Router();
 
+
 router.get('/', duckWarehouseController.getDucks);
 router.get('/:id', duckWarehouseController.getDuck);
 router.post('/add', duckWarehouseController.addDuck);

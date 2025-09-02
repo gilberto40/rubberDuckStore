@@ -5,18 +5,18 @@ import '../css/Home.css';
 
 function Home() {
     const [data, setData] = useState([]);
-    //const [deleted, setDeleted] = useState(true);
+
 
         const [isModalOpen, setIsModalOpen] = useState(false);
     const [duckToDeleteId, setDuckToDeleteId] = useState(null);
 
     useEffect(() => {
-        // if(deleted) setDeleted(false);
+  
         axios.get('/warehouse')
         .then((res) => {
             setData(res.data.data)
         })
-        // .catch((err) => console.log(err));
+
     }, []);
 
     const handleDeleteClick = (id) => {
@@ -88,7 +88,7 @@ function Home() {
             </div>
              {isModalOpen && (
                 <div className="modal-overlay">
-                    <div className="modal-content">
+                    <div className="modal-content w-25">
                         <h4>Confirm Delete</h4>
                         <p>Do you want to delete this duck?</p>
                         <div className="modal-actions">

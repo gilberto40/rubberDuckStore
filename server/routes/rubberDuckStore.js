@@ -4,6 +4,7 @@ import duckStoreController from '../controller/duckStore.js';
 
 const router = express.Router();
 
+//REST API
 router.get('/process', duckStoreController.processOrder);
 
 

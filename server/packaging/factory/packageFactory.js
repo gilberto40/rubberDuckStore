@@ -1,5 +1,6 @@
 import { WoodPackage, CardboardPackage, PlasticPackage } from "./specificPackage.js";
 
+// Factory
 class PackageFactory {
     static createPackage(size) {
         if (size === "XLarge" || size === "Large") {
